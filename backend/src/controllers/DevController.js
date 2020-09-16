@@ -39,5 +39,24 @@ module.exports = {
     }
 
         return res.json(dev)
+    },
+
+    async show(req, res){
+        const {id} = req.params;
+
+        const dev = await Dev.findById(id);
+
+        return res.json(dev);
+    },
+
+    async update(req, res){
+        const {id} = req.params
+        const dev = await Dev.findByIdAndUpdate(id, req.body, {new: true})
+        return res.json(dev);
+    },
+    async update(req, res){
+        const {id} = req.params
+         await Dev.findByIdAndDelete(id)
+        return res.json({ok: true});
     }
 }
